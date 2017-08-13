@@ -4,6 +4,7 @@
 # -*- coding: UTF-8 -*-
 
 from sys import stdout
+import re
 
 
 def register(names):
@@ -38,11 +39,20 @@ def search(name, names):
     else:
         print "Name %s don't finded" % (name)
 
+
+def find_regex(names):
+    print 'Enter a regex expression'
+    regex = raw_input()
+    names_connected = ''.join(names)
+    find = re.findall(regex, names_connected)
+    print find
+
+
 def menu():
     names = []
     option = 0
-    while (option != 4):
-        print '\nType it: 0 to register, 1 to list, 2 to remove, 3 to update name or 4 to exit'
+    while (option != 5):
+        print '\nType it: 0 to register, 1 to list, 2 to remove, 3 to update name or, 4 to find, 5 to exit'
         option = int(raw_input())
 
         if (option == 0):
@@ -61,6 +71,9 @@ def menu():
 
         if (option == 3):
             update_names(names)
+        
+        if (option == 4):
+            find_regex(names)
 
 
 menu()
